@@ -1,11 +1,6 @@
 import os
-from dotenv import load_dotenv
-
-load_dotenv()  # Load environment variables from .env file
-
-print(f"Database URL: {os.environ.get('DATABASE_URL')}")  # Debugging line
 
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
+    SECRET_KEY = os.getenv('SECRET_KEY', os.urandom(24))
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'postgresql://default:uH8UWTAP1Bac@ep-lucky-sun-a4jtxgb3-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
